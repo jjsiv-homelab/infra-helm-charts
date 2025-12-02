@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  cluster:
+  - apiVersion: v2
+    appVersion: 0.1.0
+    created: "2025-12-02T21:06:25.522361257Z"
+    description: A Helm chart for deploying clusters
+    digest: f2d85d7b332dc7e4ab4ffeef851e9e62b53e544d704d2abf2f3e5a36d1bec62d
+    name: cluster
+    type: application
+    urls:
+    - https://github.com/jjsiv-homelab/infra-helm-charts/releases/download/cluster-0.1.1/cluster-0.1.1.tgz
+    version: 0.1.1
+generated: "2025-12-02T21:06:25.52236764Z"
