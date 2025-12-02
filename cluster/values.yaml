@@ -1,0 +1,13 @@
+name:
+type:
+
+# Don't create the cluster, only connect an existing one to ArgoCD.
+cluster:
+  create: false
+
+# Addons to install in the cluster.
+addons:
+  #cert-manager: true
+  #cilium: true
+  #metrics-server: true
+  #kube-prometheus-stack: true
