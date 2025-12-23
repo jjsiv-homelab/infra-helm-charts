@@ -1,25 +1,25 @@
 {{- $tenantName := .Values.name -}}
-{{- range $env := tuple "dev" "staging" "production" "sandbox" }}
+{{- range $envName, $envSpec := .Values.environments }}
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: "{{ $tenantName }}-{{ $env }}"
+  name: "{{ $tenantName }}-{{ $envName }}"
   namespace: tenant-{{ $tenantName }}
 spec:
   project: tenants
   destination:
-    name: rpi
+    name: {{ $envSpec.cluster }}
   sources:
     - repoURL: https://jjsiv-homelab.github.io/infra-helm-charts
       chart: tenant-environment
       targetRevision: 0.1.0
       helm:
         ignoreMissingValueFiles: true
-        releaseName: {{ $env }}
+        releaseName: {{ $tenantName }}
         valueFiles:
-          - $values/tenants/{{ $tenantName }}/environments/{{ $env }}.yaml
-    - repoURL: git@github.com:jjsiv-homelab/tenants-infra.git
+          - $values/tenants/{{ $tenantName }}/environments/{{ $envName }}.yaml
+    - repoURL: git@github.com:jjsiv-homelab/tenants.git
       targetRevision: main
       ref: values
   syncPolicy:

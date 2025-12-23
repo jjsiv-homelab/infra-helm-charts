@@ -1,8 +1,23 @@
+# yaml-language-server: $schema=./values.schema.json
+
 # Name of the tenant.
-name:
+name: ""
 # Metadata to apply to the tenant-{{ .Values.name }} namespace that will be created.
 namespaceMetadata:
   labels: {}
   annotations: {}
 
-# More fields to come eventually, repos, auth, etc.
+# Configuration for tenant environments.
+environments:
+  # Configuration for dev environment.
+  dev:
+    cluster: rpi
+  # Configuration for staging environment.
+  staging:
+    cluster: rpi
+  # Configuration for sandbox environment.
+  sandbox:
+    cluster: rpi
+  # Configuration for production environment.
+  production:
+    cluster: rpi

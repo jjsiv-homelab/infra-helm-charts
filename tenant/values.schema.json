@@ -30,6 +30,61 @@
           "description": "Annotations to apply to the namespace"
         }
       }
+    },
+    "environments": {
+      "type": "object",
+      "description": "Configuration for tenant environments",
+      "properties": {
+        "dev": {
+          "type": "object",
+          "description": "Configuration for dev environment",
+          "properties": {
+            "cluster": {
+              "type": "string",
+              "description": "Target cluster for the environment"
+            }
+          },
+          "required": ["cluster"],
+          "additionalProperties": false
+        },
+        "staging": {
+          "type": "object",
+          "description": "Configuration for staging environment",
+          "properties": {
+            "cluster": {
+              "type": "string",
+              "description": "Target cluster for the environment"
+            }
+          },
+          "required": ["cluster"],
+          "additionalProperties": false
+        },
+        "sandbox": {
+          "type": "object",
+          "description": "Configuration for sandbox environment",
+          "properties": {
+            "cluster": {
+              "type": "string",
+              "description": "Target cluster for the environment"
+            }
+          },
+          "required": ["cluster"],
+          "additionalProperties": false
+        },
+        "production": {
+          "type": "object",
+          "description": "Configuration for production environment",
+          "properties": {
+            "cluster": {
+              "type": "string",
+              "description": "Target cluster for the environment"
+            }
+          },
+          "required": ["cluster"],
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
     }
   }
 }
