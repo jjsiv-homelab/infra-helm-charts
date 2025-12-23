@@ -6,7 +6,7 @@ metadata:
 spec:
   forProvider:
     labels:
-      {{- include "cluster.addons" . | nindent 6 }}
+    {{- include "cluster.addons" . | nindent 6 }}
       cluster-type: {{ .Values.type }}
     config:
     {{- if (eq .Values.type "management") }}

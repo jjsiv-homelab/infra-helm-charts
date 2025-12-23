@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": [
+      "name"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "pattern": "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$",
+      "maxLength": 253,
+      "description": "Name of the tenant. Must be a valid Kubernetes resource name (lowercase alphanumeric characters or hyphens, starting and ending with an alphanumeric character)"
+    },
+    "namespaceMetadata": {
+      "type": "object",
+      "description": "Metadata to apply to the namespace",
+      "properties": {
+        "labels": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Labels to apply to the namespace"
+        },
+        "annotations": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Annotations to apply to the namespace"
+        }
+      }
+    }
+  }
+}

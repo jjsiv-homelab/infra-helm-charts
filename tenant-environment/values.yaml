@@ -1,0 +1,17 @@
+namespaces: {}
+  # # common metadata to set for all namespaces
+  # commonMetadata:
+  #   labels: {}
+  #   annotations: {}
+  # # Namespaces will be created from release name + "-" + suffix
+  # suffixes:
+  #   dev:
+  #     # standard | vcluster
+  #     type: standard
+  #     rbac:
+  #       - role: admin
+  #         groups:
+  #           - test-group-a
+  #     metadata:
+  #       labels: {}
+  #       annotations: {}

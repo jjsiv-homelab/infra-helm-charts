@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: tenant-{{ .Values.name }}
+  labels:
+    tenant: "{{ .Values.name }}"
+  {{- range $k, $v := .Values.namespaceMetadata.labels }}
+    {{ $k }}: {{ $v | quote }}
+  {{- end }}
+  annotations:
+  {{- range $k, $v := .Values.namespaceMetadata.annotations }}
+    {{ $k }}: {{ $v | quote }}
+  {{- end }}

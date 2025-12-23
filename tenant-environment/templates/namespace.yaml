@@ -1,0 +1,32 @@
+{{- $tenantName := .Release.Name -}}
+{{- $namespaces := .Values.namespaces -}}
+{{- range $suffix, $ns := .Values.namespaces.suffixes }}
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: {{ $tenantName }}-{{ $suffix }}
+  labels:
+    tenant: "{{ $tenantName }}"
+  {{- if and $namespaces.commonMetadata $namespaces.commonMetadata.labels }}
+    {{- range $k, $v := $namespaces.commonMetadata.labels }}
+    {{ $k }}: {{ $v | quote }}
+    {{- end }}
+  {{- end }}
+  {{- if and $ns.metadata $ns.metadata.labels }}
+    {{- range $k, $v := $ns.metadata.labels }}
+    {{ $k }}: {{ $v | quote }}
+    {{- end }}
+  {{- end }}
+  annotations:
+  {{- if and $namespaces.commonMetadata $namespaces.commonMetadata.annotations }}
+    {{- range $k, $v := $namespaces.commonMetadata.annotations }}
+    {{ $k }}: {{ $v | quote }}
+    {{- end }}
+  {{- end }}
+  {{- if and $ns.metadata $ns.metadata.annotations }}
+    {{- range $k, $v := $ns.metadata.annotations }}
+    {{ $k }}: {{ $v | quote }}
+    {{- end }}
+  {{- end }}
+{{- end }}

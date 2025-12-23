@@ -1,0 +1,6 @@
+name: tenant-1
+namespaceMetadata:
+  labels:
+    somelabel: "test"
+  annotations:
+    someannotation: "test"

@@ -1,0 +1,3 @@
+{{- if eq .Release.Name "release-name" -}}
+  {{- fail "You must specify a unique release name for each tenant environment. The release name is used to generate namespace names and must not be 'release-name'." -}}
+{{- end -}}

@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "namespaces": {
+      "type": "object",
+      "properties": {
+        "commonMetadata": {
+          "type": "object",
+          "description": "Common metadata to set for all namespaces",
+          "properties": {
+            "labels": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              },
+              "description": "Labels to apply to all namespaces"
+            },
+            "annotations": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              },
+              "description": "Annotations to apply to all namespaces"
+            }
+          },
+          "additionalProperties": false
+        },
+        "suffixes": {
+          "type": "object",
+          "description": "Namespaces will be created from release name + '-' + suffix",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": ["standard", "vcluster"],
+                "description": "Type of namespace (standard or vcluster)"
+              },
+              "rbac": {
+                "type": "array",
+                "description": "RBAC configuration for the namespace",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "role": {
+                      "type": "string",
+                      "description": "Role to assign"
+                    },
+                    "groups": {
+                      "type": "array",
+                      "description": "Groups to assign the role to",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              },
+              "metadata": {
+                "type": "object",
+                "description": "Metadata specific to this namespace",
+                "properties": {
+                  "labels": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "string"
+                    },
+                    "description": "Labels to apply to this namespace"
+                  },
+                  "annotations": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "string"
+                    },
+                    "description": "Annotations to apply to this namespace"
+                  }
+                },
+                "additionalProperties": false
+              }
+            },
+            "additionalProperties": false
+          },
+          "propertyNames": {
+            "pattern": "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$",
+            "maxLength": 63,
+            "description": "Suffix must follow Kubernetes naming conventions (lowercase alphanumeric characters or hyphens, starting and ending with an alphanumeric character, max 63 chars)"
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

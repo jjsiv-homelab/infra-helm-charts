@@ -1,0 +1,21 @@
+# yaml-language-server: $schema=../values.schema.json
+namespaces:
+  commonMetadata:
+    annotations:
+      something: something
+  suffixes:
+    dev:
+      type: standard
+      rbac:
+        - role: admin
+          groups:
+            - test-group-a
+    dev2:
+      type: standard
+      rbac:
+        - role: admin
+          groups:
+            - test-group-a
+      metadata:
+        annotations:
+          something2: something2
