@@ -18,7 +18,7 @@ spec:
         ignoreMissingValueFiles: true
         releaseName: {{ $tenantName }}
         valueFiles:
-          - $values/tenants/{{ $tenantName }}/environments/{{ $envName }}.yaml
+          - $values/{{ $tenantName }}/environments/{{ $envName }}.yaml
     - repoURL: git@github.com:jjsiv-homelab/tenants.git
       targetRevision: main
       ref: values
