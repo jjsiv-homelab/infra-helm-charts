@@ -54,6 +54,16 @@ entries:
     version: 0.1.0
   tenant-environment:
   - apiVersion: v2
+    appVersion: 0.1.3
+    created: "2025-12-27T19:54:30.968128965Z"
+    description: A Helm chart for provisioning tenant environments
+    digest: 9bcccfde8ea37fd279ee592dc38302d2eab9d90e942d67f1c30bf63f2678c71f
+    name: tenant-environment
+    type: application
+    urls:
+    - https://github.com/jjsiv-homelab/infra-helm-charts/releases/download/tenant-environment-0.1.3/tenant-environment-0.1.3.tgz
+    version: 0.1.3
+  - apiVersion: v2
     appVersion: 0.1.2
     created: "2025-12-27T19:47:20.783406824Z"
     description: A Helm chart for provisioning tenant environments
@@ -83,4 +93,4 @@ entries:
     urls:
     - https://github.com/jjsiv-homelab/infra-helm-charts/releases/download/tenant-environment-0.1.0/tenant-environment-0.1.0.tgz
     version: 0.1.0
-generated: "2025-12-27T19:49:26.773416616Z"
+generated: "2025-12-27T19:54:30.968151317Z"
