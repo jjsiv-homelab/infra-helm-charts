@@ -1,6 +1,6 @@
 {{- $tenantName := .Release.Name -}}
 {{- $namespaces := .Values.namespaces -}}
-{{- range $suffix, $ns := .Values.namespaces.suffixes }}
+{{- range $suffix, $ns := $namespaces.suffixes }}
 ---
 apiVersion: v1
 kind: Namespace

@@ -9,7 +9,7 @@ namespaces: {}
   #     # standard | vcluster
   #     type: standard
   #     rbac:
-  #       - role: admin
+  #       admin:
   #         groups:
   #           - test-group-a
   #     metadata:
