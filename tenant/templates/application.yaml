@@ -13,7 +13,7 @@ spec:
   sources:
     - repoURL: https://jjsiv-homelab.github.io/infra-helm-charts
       chart: tenant-environment
-      targetRevision: 0.1.0
+      targetRevision: 0.*
       helm:
         ignoreMissingValueFiles: true
         releaseName: {{ $tenantName }}
