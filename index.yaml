@@ -13,6 +13,16 @@ entries:
     version: 0.1.1
   tenant:
   - apiVersion: v2
+    appVersion: 0.2.2
+    created: "2025-12-27T19:49:26.773396719Z"
+    description: A Helm chart for creating tenant infrastructure
+    digest: 9378ad69a6d93587c0122fa6e8642d40bc3d66b81fc1400dba1e5e16344bf778
+    name: tenant
+    type: application
+    urls:
+    - https://github.com/jjsiv-homelab/infra-helm-charts/releases/download/tenant-0.2.2/tenant-0.2.2.tgz
+    version: 0.2.2
+  - apiVersion: v2
     appVersion: 0.2.1
     created: "2025-12-27T19:03:44.898023231Z"
     description: A Helm chart for creating tenant infrastructure
@@ -73,4 +83,4 @@ entries:
     urls:
     - https://github.com/jjsiv-homelab/infra-helm-charts/releases/download/tenant-environment-0.1.0/tenant-environment-0.1.0.tgz
     version: 0.1.0
-generated: "2025-12-27T19:47:20.783442511Z"
+generated: "2025-12-27T19:49:26.773416616Z"
