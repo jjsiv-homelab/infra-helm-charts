@@ -1,13 +1,40 @@
-name:
-type:
+# Name of the cluster.
+name: ""
+# URL of the Kubernetes API.
+server: ""
 
-# Don't create the cluster, only connect an existing one to ArgoCD.
-cluster:
-  create: false
+# Connect cluster to ArgoCD instances.
+argocdConnections: {}
+  # central:
+  #   config:
+  #     kubeconfigSecretRef:
+  #       name: ""
+  #       namespace: ""
+  #       key: ""
+  #     tlsClientConfig:
+  #       insecure: true
 
 # Addons to install in the cluster.
-addons:
-  #cert-manager: true
-  #cilium: true
-  #metrics-server: true
-  #kube-prometheus-stack: true
+# Cluster must be connected to central ArgoCD.
+addons: {}
+  # cert-manager:
+  #   enabled: true
+
+# Provision a vCluster.
+# This will create an ArgoCD Application that deploys the official vcluster Helm chart.
+vcluster:
+  # Version of the Helm chart to deploy.
+  version: 0.30.*
+  # Host cluster for the vCluster.
+  hostCluster: "rpi"
+  # Namespace in the host cluster for vCluster.
+  hostClusterNamespace: ""
+  # Preserve this cluster on deletion.
+  preserveOnDeletion: false
+  # Values for the vcluster Helm chart.
+  # Must not be nil for the cluster to be created, so at least 'config: {}'
+  config:
+
+# Provision a Proxmox cluster.
+# Clusters are provisioned through ClusterAPI.
+proxmox: {}

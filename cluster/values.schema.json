@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": ["name", "server"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Name of the cluster."
+    },
+    "server": {
+      "type": "string",
+      "minLength": 1,
+      "description": "URL of the Kubernetes API."
+    },
+    "argocdConnections": {
+      "type": "object",
+      "description": "Connect cluster to ArgoCD instances.",
+      "properties": {
+        "central": {
+          "type": "object",
+          "properties": {
+            "config": {
+              "type": "object",
+              "properties": {
+                "kubeconfigSecretRef": {
+                  "type": "object",
+                  "required": ["name", "namespace", "key"],
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "namespace": {
+                      "type": "string"
+                    },
+                    "key": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "tlsClientConfig": {
+                  "type": "object",
+                  "properties": {
+                    "insecure": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "addons": {
+      "type": "object",
+      "description": "Addons to install in the cluster. Cluster must be connected to central ArgoCD.",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "enabled": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "vcluster": {
+      "type": "object",
+      "description": "Provision a vCluster. This will create an ArgoCD Application that deploys the official vcluster Helm chart.",
+      "required": ["hostCluster"],
+      "properties": {
+        "version": {
+          "type": "string",
+          "description": "Version of the Helm chart to deploy."
+        },
+        "hostCluster": {
+          "type": "string",
+          "description": "Host cluster for the vCluster."
+        },
+        "hostClusterNamespace": {
+          "type": "string",
+          "description": "Namespace in the host cluster for vCluster."
+        },
+        "preserveOnDeletion": {
+          "type": "boolean",
+          "description": "Preserve this cluster on deletion."
+        },
+        "config": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "object"
+            }
+          ],
+          "description": "Values for the vcluster Helm chart. Must not be nil for the cluster to be created, so at least 'config: {}'."
+        }
+      }
+    },
+    "proxmox": {
+      "type": "object",
+      "description": "Provision a Proxmox cluster. Clusters are provisioned through ClusterAPI."
+    }
+  }
+}

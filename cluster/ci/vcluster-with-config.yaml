@@ -1,0 +1,50 @@
+# yaml-language-server: $schema=../values.schema.json
+
+name: "foobar-dev"
+server: "https://foobar-dev.cluster.homelab.local"
+
+argocdConnections:
+  central:
+    config:
+      kubeconfigSecretRef:
+        name: vc-foobar-dev
+        namespace: vcluster-example-vcluster
+        key: config
+
+vcluster:
+  hostCluster: rpi
+  hostClusterNamespace: vcluster-foobar-dev
+  config:
+    sync:
+      toHost:
+        ingresses:
+          enabled: true
+      fromHost:
+        ingressClasses:
+          enabled: true
+
+    controlPlane:
+      statefulSet:
+        highAvailability:
+          replicas: 1
+        persistence:
+          volumeClaim:
+            enabled: false
+      ingress:
+        enabled: true
+        host: "foobar-dev.homelab.local"
+        annotations:
+          ingress.cilium.io/tls-passthrough: enabled
+          ingress.cilium.io/force-https: enabled
+        spec:
+          tls:
+            - hosts:
+                - foobar-dev.homelab.local
+
+    integrations:
+      metricsServer:
+        enabled: true
+
+    exportKubeConfig:
+      context: foobar-dev
+      server: https://foobar-dev.homelab.local

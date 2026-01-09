@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=../values.schema.json
+
+name: "example-vcluster"
+server: "https://example-vcluster.cluster.homelab.local"
+
+argocdConnections:
+  central:
+    config:
+      kubeconfigSecretRef:
+        name: vc-kubeconfig
+        namespace: vcluster-example-vcluster
+        key: config
+
+vcluster:
+  config: {}

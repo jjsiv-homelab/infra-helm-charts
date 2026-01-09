@@ -1,0 +1,36 @@
+{{- if eq (kindOf .Values.vcluster.config) "map" }}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: vcluster-{{ .Values.name }}
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+  {{- if not .Values.vcluster.preserveOnDeletion }}
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io/background
+  {{- end }}
+spec:
+  project: infrastructure
+  destination:
+    name: {{ default "rpi" .Values.vcluster.hostCluster }}
+    namespace: {{ default (printf "vcluster-%s" .Values.name) .Values.vcluster.hostClusterNamespace }}
+  sources:
+  - repoURL: https://charts.loft.sh
+    chart: vcluster
+    targetRevision: {{ .Values.vcluster.version }}
+    helm:
+      releaseName: {{ .Values.name }}
+      {{- if .Values.vcluster.config }}
+      valuesObject:
+        {{- toYaml .Values.vcluster.config | nindent 8 }}
+      {{- end }}
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+    syncOptions:
+      - ServerSideApply=true
+      - CreateNamespace=true
+      - PrunePropagationPolicy=background
+{{- end }}

@@ -1,22 +1,21 @@
+{{- if .Values.argocdConnections }}
+{{- $top := . -}}
+{{- range $instanceName, $instanceSpec := .Values.argocdConnections }}
 apiVersion: cluster.argocd.crossplane.io/v1alpha1
 kind: Cluster
 metadata:
-  name: {{ .Values.name }}
-  namespace: argocd
+  name: {{ $top.Values.name }}-{{ $instanceName }}
 spec:
   forProvider:
     labels:
-    {{- include "cluster.addons" . | nindent 6 }}
-      cluster-type: {{ .Values.type }}
+  {{- if eq $instanceName "central" }}
+    {{- include "cluster.addons" $top | nindent 6 }}
+  {{- end }}
     config:
-    {{- if (eq .Values.type "management") }}
-      tlsClientConfig:
-        insecure: true
-    {{- end }}
-    name: {{ .Values.name }}
-    {{- if (eq .Values.type "management") }}
-    server: https://kubernetes.default.svc
-    {{- end }}
+    {{- include "cluster.config" $instanceSpec | nindent 6 }}
+    name: {{ $top.Values.name }}
+    server: {{ $top.Values.server }}
   providerConfigRef:
     name: argocd-provider
-
+{{- end }}
+{{- end }}

@@ -1,0 +1,11 @@
+name: "rpi"
+server: "https://kubernetes.default.svc"
+
+argocdConnections:
+  central:
+    config:
+      tlsClientConfig:
+        insecure: true
+
+addons:
+  cert-manager: true
