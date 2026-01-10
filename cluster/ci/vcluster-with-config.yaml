@@ -8,7 +8,7 @@ argocdConnections:
     config:
       kubeconfigSecretRef:
         name: vc-foobar-dev
-        namespace: vcluster-example-vcluster
+        namespace: vcluster-foobar-dev
         key: config
 
 vcluster:

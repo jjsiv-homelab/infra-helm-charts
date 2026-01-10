@@ -8,4 +8,5 @@ argocdConnections:
         insecure: true
 
 addons:
-  cert-manager: true
+  cert-manager:
+    enabled: true

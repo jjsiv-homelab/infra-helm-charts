@@ -1,7 +1,7 @@
 {{/* Builds cluster addons labels. Only for connections to central cluster */}}
 {{- define "cluster.addons" -}}
 {{- range $name, $val := .Values.addons }}
-addon/{{ $name }}: {{ quote $val }}
+addon/{{ $name }}: {{ quote $val.enabled }}
 {{- end -}}
 {{- end -}}
 
