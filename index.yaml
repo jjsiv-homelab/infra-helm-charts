@@ -31,6 +31,17 @@ entries:
     urls:
     - https://github.com/jjsiv-homelab/infra-helm-charts/releases/download/cluster-0.1.1/cluster-0.1.1.tgz
     version: 0.1.1
+  grafana:
+  - apiVersion: v2
+    appVersion: 13.0.2
+    created: "2026-06-10T17:00:09.785820085Z"
+    description: Helm chart provisioning Grafana from Grafana Operator CRs
+    digest: 44abd8926cf218ec105fba579b9874832043b49981cb0562478a90d9b092a101
+    name: grafana
+    type: application
+    urls:
+    - https://github.com/jjsiv-homelab/infra-helm-charts/releases/download/grafana-0.1.0/grafana-0.1.0.tgz
+    version: 0.1.0
   tenant:
   - apiVersion: v2
     appVersion: 0.2.2
@@ -123,4 +134,4 @@ entries:
     urls:
     - https://github.com/jjsiv-homelab/infra-helm-charts/releases/download/tenant-environment-0.1.0/tenant-environment-0.1.0.tgz
     version: 0.1.0
-generated: "2026-01-10T20:55:53.672549404Z"
+generated: "2026-06-10T17:00:09.785861781Z"
