@@ -8,7 +8,7 @@ metadata:
 spec:
   instanceSelector:
     matchLabels:
-      instance: {{ $top.Release.Namespace }}
+      instance: {{ $top.Release.Name }}
   datasource:
     name: {{ $name }}
     type: {{ $spec.type }}
