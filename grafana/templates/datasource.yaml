@@ -1,0 +1,23 @@
+{{- $top := . }}
+{{- range $name, $spec := .Values.datasources }}
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaDatasource
+metadata:
+  name: {{ $name }}
+  namespace: {{ $top.Release.Namespace }}
+spec:
+  instanceSelector:
+    matchLabels:
+      instance: {{ $top.Release.Namespace }}
+  datasource:
+    name: {{ $name }}
+    type: {{ $spec.type }}
+    access: {{ default "proxy" $spec.access }}
+    url: {{ $spec.url }}
+    isDefault: {{ default false $spec.isDefault }}
+    {{- if $spec.jsonData }}
+      jsonData:
+      {{- toYaml $spec.jsonData | nindent 8 }}
+    {{- end }}
+---
+{{- end }}

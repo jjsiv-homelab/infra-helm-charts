@@ -1,0 +1,12 @@
+grafana:
+  labels: {}
+  annotations: {}
+  spec:
+    disableDefaultAdminSecret: true
+    config:
+      log:
+        mode: console
+
+datasources: {}
+
+dashboards: {}
