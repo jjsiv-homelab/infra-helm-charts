@@ -16,8 +16,8 @@ spec:
     url: {{ $spec.url }}
     isDefault: {{ default false $spec.isDefault }}
     {{- if $spec.jsonData }}
-      jsonData:
-      {{- toYaml $spec.jsonData | nindent 8 }}
+    jsonData:
+      {{- toYaml $spec.jsonData | nindent 6 }}
     {{- end }}
 ---
 {{- end }}

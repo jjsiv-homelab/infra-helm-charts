@@ -42,6 +42,12 @@ datasources:
   victorialogs:
     type: victoriametrics-logs-datasource
     url: http://192.168.55.10:9428
+    jsonData:
+      httpMethod: GET
+      traceToLogsV2:
+        datasourceUid: victorialogs
+        filterByTraceID: true
+        filterBySpanID: true
 
 dashboards:
   - folder: Monitoring
